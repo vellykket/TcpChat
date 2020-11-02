@@ -137,7 +137,11 @@ namespace TcpChat
         {
             ConnectedClients.Remove(client.SocketId);
             ChatsClientMapping.Remove(client.SocketId);
-            Chats.Remove(client.SocketId);
+            foreach (var chat in Chats)
+            {
+                chat.Value.Remove(client);
+            }
+            
         }
     }
 }

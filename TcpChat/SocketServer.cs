@@ -36,5 +36,10 @@ namespace TcpChat
             await Task.WhenAny(_socketsReedThread);
             throw new Exception("Some thread done");
         }
+
+        public async Task Disconnect(SocketClient client)
+        {
+            _socketsReedThread.Remove(client.StartReadThread());
+        }
     }
 }
